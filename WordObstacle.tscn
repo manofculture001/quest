@@ -1,0 +1,82 @@
+[gd_scene load_steps=5 format=3 uid="uid://3415s5iqxyje"]
+
+[ext_resource type="Script" uid="uid://cd1w06s37exeo" path="res://WordObstacle.gd" id="1_eyvto"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_eyvto"]
+size = Vector2(116, 26)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_itbqh"]
+size = Vector2(149.667, 3.16113)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_5ytnc"]
+size = Vector2(170.966, 4.44368)
+
+[node name="WordObstacle" type="Area2D"]
+position = Vector2(1015, 144)
+script = ExtResource("1_eyvto")
+
+[node name="Arrow" type="Polygon2D" parent="."]
+position = Vector2(64, 87)
+rotation = 4.79966
+color = Color(0.159127, 0, 0, 0.945098)
+polygon = PackedVector2Array(54.2687, -91.0764, 56.2611, -91.2507, 131.41, 67.8049, 79.5082, 48.254, 51.7019, 51.6906, 12.0781, 69.2107)
+
+[node name="Arrow" type="Polygon2D" parent="Arrow"]
+position = Vector2(-359.027, -312.646)
+rotation = -0.0872665
+color = Color(0.159127, 0, 0, 0.945098)
+polygon = PackedVector2Array(54.2687, -91.0764, 56.2611, -91.2507, 131.41, 67.8049, 79.5082, 48.254, 51.7019, 51.6906, 12.0781, 69.2107)
+
+[node name="Label" type="Label" parent="."]
+light_mask = 521
+visibility_layer = 9
+offset_right = 40.0
+offset_bottom = 23.0
+theme_override_font_sizes/font_size = 30
+text = "CHUDEL"
+horizontal_alignment = 1
+vertical_alignment = 1
+uppercase = true
+metadata/_edit_use_anchors_ = true
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(62, 20)
+shape = SubResource("RectangleShape2D_eyvto")
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="."]
+position = Vector2(56.7383, 51.561)
+rotation = -2.79253
+shape = SubResource("RectangleShape2D_itbqh")
+
+[node name="CollisionShape2D3" type="CollisionShape2D" parent="."]
+position = Vector2(60.5133, -4.46364)
+rotation = 2.79078
+shape = SubResource("RectangleShape2D_5ytnc")
+
+[node name="Label2" type="Label" parent="."]
+light_mask = 521
+visibility_layer = 9
+offset_left = -347.997
+offset_top = 336.584
+offset_right = -228.997
+offset_bottom = 378.584
+theme_override_font_sizes/font_size = 30
+text = "CHUDEL"
+horizontal_alignment = 1
+vertical_alignment = 1
+uppercase = true
+metadata/_edit_use_anchors_ = true
+
+[node name="CollisionShape2D4" type="CollisionShape2D" parent="."]
+position = Vector2(-288.997, 358.584)
+shape = SubResource("RectangleShape2D_eyvto")
+
+[node name="CollisionShape2D5" type="CollisionShape2D" parent="."]
+position = Vector2(-279.858, 378.475)
+rotation = -2.79253
+shape = SubResource("RectangleShape2D_itbqh")
+
+[node name="CollisionShape2D6" type="CollisionShape2D" parent="."]
+position = Vector2(-282.483, 326.12)
+rotation = 2.79078
+shape = SubResource("RectangleShape2D_5ytnc")

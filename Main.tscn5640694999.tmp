@@ -1,0 +1,82 @@
+[gd_scene load_steps=9 format=3 uid="uid://8i27p05wky2e"]
+
+[ext_resource type="Script" uid="uid://bvon122p8rpwa" path="res://main.gd" id="1_uu6xs"]
+[ext_resource type="Script" uid="uid://bjy7vlaxk81u" path="res://background_scroller.gd" id="2_cm0pq"]
+[ext_resource type="Script" uid="uid://b1det1eyy6lep" path="res://player.gd" id="2_r0du0"]
+[ext_resource type="Texture2D" uid="uid://bdlmgk0vsgyr8" path="res://backgroundimg.jpg" id="3_fos0i"]
+[ext_resource type="Texture2D" uid="uid://eblw40t305ju" path="res://flappy-bird-tap-bird-2d-spike-bird-png-favpng-BJfcaM6pUttU8m91xiimV4EV1.jpg" id="3_r0du0"]
+[ext_resource type="AudioStream" uid="uid://tuobinh50rhd" path="res://play-time-fun-upbeat-gaming-birthday-music-259703.mp3" id="6_lgr22"]
+[ext_resource type="Script" uid="uid://b5efcl1lkvkqe" path="res://game_over.gd" id="7_trn2v"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_cm0pq"]
+radius = 91.444
+
+[node name="Main" type="Node2D"]
+script = ExtResource("1_uu6xs")
+
+[node name="BackgroundScroller" type="Node2D" parent="."]
+script = ExtResource("2_cm0pq")
+
+[node name="BG1" type="Sprite2D" parent="BackgroundScroller"]
+position = Vector2(1986, 358)
+scale = Vector2(1.33652, 0.690114)
+texture = ExtResource("3_fos0i")
+
+[node name="BG2" type="Sprite2D" parent="BackgroundScroller"]
+position = Vector2(1986, 358)
+scale = Vector2(1.371, 0.69)
+texture = ExtResource("3_fos0i")
+
+[node name="player" type="Area2D" parent="."]
+position = Vector2(80, 8)
+script = ExtResource("2_r0du0")
+GRAVITY = null
+jump_strength = null
+
+[node name="Sprite2D" type="Sprite2D" parent="player"]
+position = Vector2(16, 10.5)
+scale = Vector2(0.129268, 0.171815)
+texture = ExtResource("3_r0du0")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="player"]
+position = Vector2(14, 22)
+shape = SubResource("CircleShape2D_cm0pq")
+
+[node name="Timer" type="Timer" parent="."]
+wait_time = 2.0
+autostart = true
+
+[node name="Music" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("6_lgr22")
+
+[node name="ScoreLabel" type="Label" parent="."]
+offset_right = 40.0
+offset_bottom = 23.0
+
+[node name="GameOver" type="CanvasLayer" parent="."]
+script = ExtResource("7_trn2v")
+
+[node name="Panel" type="Panel" parent="GameOver"]
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="GameOverLabel" type="Label" parent="GameOver/Panel"]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 23.0
+text = "Game Over!"
+horizontal_alignment = 3
+vertical_alignment = 1
+uppercase = true
+
+[node name="RestartLabel" type="Label" parent="GameOver/Panel"]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 23.0
+text = "Touch or click to restart"
+horizontal_alignment = 1
+vertical_alignment = 1
+uppercase = true
+
+[connection signal="area_entered" from="player" to="player" method="_on_area_entered"]
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

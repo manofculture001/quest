@@ -1,0 +1,91 @@
+[gd_scene load_steps=10 format=3 uid="uid://8i27p05wky2e"]
+
+[ext_resource type="Script" uid="uid://bvon122p8rpwa" path="res://main.gd" id="1_uu6xs"]
+[ext_resource type="Script" uid="uid://bjy7vlaxk81u" path="res://background_scroller.gd" id="2_cm0pq"]
+[ext_resource type="Script" uid="uid://b1det1eyy6lep" path="res://player.gd" id="2_r0du0"]
+[ext_resource type="Texture2D" uid="uid://bdlmgk0vsgyr8" path="res://backgroundimg.jpg" id="3_fos0i"]
+[ext_resource type="Texture2D" uid="uid://cadmj6cyhosqn" path="res://e6e4df26ba752161b9fc6a17321fa286.jpg" id="5_trn2v"]
+[ext_resource type="AudioStream" uid="uid://tuobinh50rhd" path="res://play-time-fun-upbeat-gaming-birthday-music-259703.mp3" id="6_lgr22"]
+[ext_resource type="Script" uid="uid://b5efcl1lkvkqe" path="res://game_over.gd" id="7_trn2v"]
+[ext_resource type="PackedScene" uid="uid://3415s5iqxyje" path="res://WordObstacle.tscn" id="8_trn2v"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_03owx"]
+size = Vector2(116, 124)
+
+[node name="Main" type="Node2D"]
+script = ExtResource("1_uu6xs")
+
+[node name="BackgroundScroller" type="Node2D" parent="."]
+script = ExtResource("2_cm0pq")
+
+[node name="BG1" type="Sprite2D" parent="BackgroundScroller"]
+position = Vector2(2080.52, 531)
+scale = Vector2(1.38196, 1.01901)
+texture = ExtResource("3_fos0i")
+
+[node name="BG2" type="Sprite2D" parent="BackgroundScroller"]
+position = Vector2(2077.54, 533.133)
+scale = Vector2(1.382, 1.019)
+texture = ExtResource("3_fos0i")
+
+[node name="player" type="Area2D" parent="."]
+position = Vector2(80, 34)
+script = ExtResource("2_r0du0")
+
+[node name="Sprite2D" type="Sprite2D" parent="player"]
+position = Vector2(-0.0239372, 51.8935)
+scale = Vector2(0.257485, 0.261154)
+texture = ExtResource("5_trn2v")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="player"]
+position = Vector2(-1, 51)
+shape = SubResource("RectangleShape2D_03owx")
+
+[node name="Timer" type="Timer" parent="."]
+wait_time = 0.058
+autostart = true
+
+[node name="Music" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("6_lgr22")
+
+[node name="ScoreLabel" type="Label" parent="."]
+offset_left = 535.0
+offset_right = 575.0
+offset_bottom = 23.0
+horizontal_alignment = 2
+
+[node name="GameOver" type="CanvasLayer" parent="."]
+visible = false
+script = ExtResource("7_trn2v")
+
+[node name="Panel" type="Panel" parent="GameOver"]
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="GameOverLabel" type="Label" parent="GameOver/Panel"]
+layout_mode = 0
+offset_left = 500.0
+offset_top = 200.0
+offset_right = 597.0
+offset_bottom = 223.0
+text = "Game Over!"
+horizontal_alignment = 1
+vertical_alignment = 1
+uppercase = true
+
+[node name="RestartLabel" type="Label" parent="GameOver/Panel"]
+layout_mode = 0
+offset_left = 500.0
+offset_top = 275.0
+offset_right = 728.0
+offset_bottom = 298.0
+text = "Touch or click to restart"
+horizontal_alignment = 1
+vertical_alignment = 1
+uppercase = true
+
+[node name="WordObstacle" parent="." instance=ExtResource("8_trn2v")]
+position = Vector2(1334, 341)
+
+[connection signal="area_entered" from="player" to="player" method="_on_area_entered"]
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

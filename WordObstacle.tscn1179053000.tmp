@@ -1,0 +1,32 @@
+[gd_scene load_steps=3 format=3 uid="uid://3415s5iqxyje"]
+
+[ext_resource type="Script" uid="uid://cd1w06s37exeo" path="res://WordObstacle.gd" id="1_eyvto"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_6vynn"]
+size = Vector2(148, 114)
+
+[node name="WordObstacle" type="Area2D"]
+position = Vector2(1015, 144)
+script = ExtResource("1_eyvto")
+
+[node name="Arrow" type="Polygon2D" parent="."]
+position = Vector2(64, 87)
+rotation = 4.79966
+color = Color(0.0666667, 0, 0, 0.0666667)
+polygon = PackedVector2Array(54.2687, -91.0764, 56.2611, -91.2507, 131.41, 67.8049, 79.5082, 48.254, 51.7019, 51.6906, 12.0781, 69.2107)
+
+[node name="Label" type="Label" parent="."]
+light_mask = 521
+visibility_layer = 9
+offset_right = 40.0
+offset_bottom = 23.0
+theme_override_font_sizes/font_size = 30
+text = "CHUDEL"
+horizontal_alignment = 1
+vertical_alignment = 1
+uppercase = true
+metadata/_edit_use_anchors_ = true
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(66, 24)
+shape = SubResource("RectangleShape2D_6vynn")
